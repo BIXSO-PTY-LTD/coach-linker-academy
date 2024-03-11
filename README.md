@@ -5,7 +5,6 @@
 -   nvm (node version manager):
     -   MacOS: <https://github.com/nvm-sh/nvm>
     -   Windows: <https://github.com/coreybutler/nvm-windows>
--   MongoDB: over 7.0 <https://www.mongodb.com/docs/manual/administration/install-community/>
 -   Node: 20.11.1 (nvm sẽ tự động cài đặt phiên bản này nếu chưa có)
     -   MacOS: <https://nodejs.org/dist/v20.11.1/node-v20.11.1.pkg>
     -   Windows: <https://nodejs.org/dist/v20.11.1/node-v20.11.1-x64.msi>
