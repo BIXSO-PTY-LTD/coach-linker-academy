@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hướng dẫn
 
-## Getting Started
+## Yêu cầu
 
-First, run the development server:
+-   nvm (node version manager):
+    -   MacOS: <https://github.com/nvm-sh/nvm>
+    -   Windows: <https://github.com/coreybutler/nvm-windows>
+-   MongoDB: over 7.0 <https://www.mongodb.com/docs/manual/administration/install-community/>
+-   Node: 20.11.1 (nvm sẽ tự động cài đặt phiên bản này nếu chưa có)
+    -   MacOS: <https://nodejs.org/dist/v20.11.1/node-v20.11.1.pkg>
+    -   Windows: <https://nodejs.org/dist/v20.11.1/node-v20.11.1-x64.msi>
+-   Dùng npm, không dùng các công cụ khác để tránh xung đột
+
+## Cài đặt
+
+```bash
+rm -rf node_modules && rm -f package-lock.json && npm --color=always i
+```
+
+## Chạy ở môi trường development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Khi thành công sẽ thấy terminal/console hiển thị thông báo:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+▲ Next.js 14.1.3
+- Local:        http://localhost:8001
+- Environments: .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Kiểm tra lỗi (chạy thủ công)
 
-## Learn More
+```bash
+npm run lint:check
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Sửa lỗi (chạy thủ công)
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run lint:fix
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Một số quy ước
 
-## Deploy on Vercel
+### Quy ước đặt tên
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   Tên biến: `camelCase`
+-   Tên hàm: `camelCase`
+-   Tên biến parameter: `camelCase`
+-   Tên biến argument: `camelCase`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Tên biến private: `_camelCase`
+-   Tên biến protected: `camelCase_`
+-   Tên biến static: `camelCase_`
+-   Tên class: `PascalCase`
+-   Tên hằng số: `UPPER_CASE`
+-   Tên file: `kebab-case`
+-   Tên thư mục: `kebab-case`
+
+### Quy ước đặt tên type typescript
+
+-   Dùng tiền tố `I_` cho interface (ví dụ: `I_User`)
+-   Dùng tiền tố `T_` cho type (ví dụ: `T_User`)
+-   Dùng tiền tố `E_` cho enum (ví dụ: `E_User`)
+
+### Quy ước đặt tên biến môi trường
+
+-   Dùng tiền tố `REACT_APP_` cho biến môi trường của react
+-   Dùng tiền tố `NEXT_PUBLIC_` cho biến môi trường của nextjs
+-   Dùng tiền tố `VITE_` cho biến môi trường của vite
+-   Dùng tiền tố `NODE_` cho biến môi trường của node
+
+### Quy ước viết code
+
+-   Không dùng `var`
+-   Không dùng `==`
+-   Xóa `console.log` trước khi commit
+-   Xóa `debugger` trước khi commit
+-   Không dùng `any`, `unknown`, `never` nếu không cần thiết
+-   Không dùng `@ts-ignore`
+-   Không dùng `@ts-nocheck`
+
+### Quy ước commit
+
+-   Commit message có dạng: `type(scope): message` (ví dụ: `feat(user): add user feature`)
+
+### Quy ước pull request
+
+-   Pull request có dạng: `type(scope): message` (ví dụ: `feat(user): add user feature`)
+
+## Cấu trúc thư mục và ý nghĩa
+
+```text
+.
+├── public
+│   ├── next.svg
+│   └── vercel.svg
+├── shared => Các file dùng chung
+│   └── contexts => Các context dùng chung
+│       ├── index.ts => import tất cả các context con vào index
+│       └── Loading.tsx => Context loading
+├── typescript => Các kiểu typescript
+│   ├── index.ts => import tất cả các type con vào index
+│   └── loading.ts
+├── .commitlintrc => quy ước commit
+├── .editorconfig => quy ước format code
+├── .env => biến môi trường
+├── .env.example => mẫu biến môi trường
+├── .eslintrc => cấu hình eslint
+├── .gitignore => cấu hình git
+├── .lintstagedrc => cấu hình lint-staged
+├── .ncurc.js => cấu hình commitizen
+├── .nvmrc => phiên bản node
+├── .prettierrc => quy ước format code
+├── next-env.d.ts => nextjs types
+├── next.config.mjs => cấu hình nextjs
+├── package-lock.json => cấu hình npm
+├── package.json => cấu hình npm
+├── postcss.config.js => cấu hình postcss
+├── README.md => hướng dẫn
+├── tailwind.config.ts => cấu hình tailwindcss
+└── tsconfig.json => cấu hình typescript
+```

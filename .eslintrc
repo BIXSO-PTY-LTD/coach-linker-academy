@@ -5,20 +5,6 @@
         "next",
         "next/core-web-vitals",
         "prettier",
-        "plugin:import/recommended",
     ],
-    "settings": {
-        "import/resolver": {
-            "typescript": true,
-        },
-    },
-    "rules": {
-        "import/newline-after-import": [
-            "error",
-            {
-                "count": 1,
-            },
-        ],
-    },
     "ignorePatterns": [".next", "__test__", "next.config.js"],
 }
