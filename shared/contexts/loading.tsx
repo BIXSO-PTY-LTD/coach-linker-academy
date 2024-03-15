@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 
-import { I_Children, I_LoadingContextType } from '#typescript';
+import { I_Children, I_LoadingContextType } from '#shared/typescript';
 
 export const LoadingContext = createContext<I_LoadingContextType | undefined>(undefined);
 
