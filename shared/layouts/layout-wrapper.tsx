@@ -1,16 +1,16 @@
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { ReactNode, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import { Bubble, Spinner } from '#shared/components';
 import { withI18n } from '#shared/hocs';
 import { useClickOutside, useLanguage, useLoading, useTranslations } from '#shared/hooks';
 import { LANGUAGE_LIST } from '#shared/i18n';
-import { E_LanguageCode } from '#shared/typescript';
+import { E_LanguageCode, I_Children } from '#shared/typescript';
 
-const Layout = ({ children }: { children: ReactNode }) => {
+export const LayoutWrapper = withI18n(({ children }: I_Children) => {
     const { isLoading } = useLoading();
-    const tTranslation = useTranslations('language');
+    const translate = useTranslations();
     const { selectedLanguage, setSelectedLanguage } = useLanguage();
     const languageBubbleRef = useRef(null);
 
@@ -37,7 +37,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                         <ListItem key={idx} disablePadding>
                             <ListItemButton onClick={() => handleChangeLanguage(lang.code)}>
                                 <ListItemIcon className="text-black">{lang.flag}</ListItemIcon>
-                                <ListItemText primary={tTranslation(lang.code)} />
+                                <ListItemText primary={translate(`language.${lang.code}`)} />
                             </ListItemButton>
                         </ListItem>
                     ))}
@@ -46,6 +46,4 @@ const Layout = ({ children }: { children: ReactNode }) => {
             <ToastContainer />
         </>
     );
-};
-
-export const BlankLayout = withI18n(Layout);
+});

@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 
-import { I_Children, I_LoadingContextType } from '#shared/typescript';
+import { I_Children, I_LoadingContext } from '#shared/typescript';
 
-export const LoadingContext = createContext<I_LoadingContextType | undefined>(undefined);
+export const LoadingContext = createContext<I_LoadingContext | undefined>(undefined);
 
 export function LoadingProvider({ children }: I_Children): JSX.Element {
     const [isLoading, setIsLoading] = useState(false);

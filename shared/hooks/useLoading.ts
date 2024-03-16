@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
 import { LoadingContext } from '#shared/contexts';
-import { I_LoadingContextType } from '#shared/typescript';
+import { I_LoadingContext } from '#shared/typescript';
 
-export const useLoading = (): I_LoadingContextType => {
+export const useLoading = (): I_LoadingContext => {
     const context = useContext(LoadingContext);
 
     if (!context) {
