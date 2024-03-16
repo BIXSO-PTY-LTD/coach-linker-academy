@@ -4,7 +4,7 @@ export const useLocalStorage = <T>(
     key: string,
     defaultValue?: T,
 ): { value: T | null | undefined; set: (newValue: T) => void; remove: () => void } => {
-    const [value, setValue] = useState<T | null | undefined>();
+    const [value, setValue] = useState<T | null | undefined>(defaultValue);
 
     const set = (newValue: T) => {
         localStorage.setItem(key, JSON.stringify(newValue));
