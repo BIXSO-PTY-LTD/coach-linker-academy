@@ -13,7 +13,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { PATHS } from '#app/routes';
-import { Form, Iconify, RouterLink, TextField } from '#shared/components';
+import { Form, RouterLink, TextField } from '#shared/components';
 import { useBoolean } from '#shared/hooks';
 import { useRouter } from 'next/navigation';
 

@@ -1,59 +1,54 @@
-import Box, { BoxProps } from '@mui/material/Box';
+import Box from '@mui/material/Box';
 
-import { HEADER } from '#shared/constants';
-import { SettingsProvider } from '#shared/contexts';
-import { ThemeProvider } from '#shared/theme';
-import Footer from './footer';
 import Header from './header';
+import Footer from './footer';
+import { usePathname } from 'next/navigation';
+import { HEADER } from '../config-layout';
 
-type T_MainWrapperProps = BoxProps & {
+// ----------------------------------------------------------------------
+
+const pathsOnDark = ['/career', '/travel'];
+
+const spacingLayout = [...pathsOnDark, '/', '/e-learning', '/marketing'];
+
+type Props = {
     children: React.ReactNode;
-    headerOnDark?: boolean;
-    disabledSpacing?: boolean;
 };
 
-export const MainLayout = ({
-    children,
-    headerOnDark = false,
-    disabledSpacing = false,
-    sx,
-    ...other
-}: T_MainWrapperProps) => {
+export default function MainLayout({ children }: Props) {
+    const pathname = usePathname();
+
+    const actionPage = (arr: string[]) => arr.some((path) => pathname === path || pathname === `${path}/`);
+
     return (
-        <SettingsProvider
-            defaultSettings={{
-                themeMode: 'light',
-                themeDirection: 'ltr',
-                themeColorPresets: 'default',
-            }}
-        >
-            <ThemeProvider>
-                <Box
-                    sx={{
-                        height: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        ...sx,
-                    }}
-                    {...other}
-                >
-                    <Header headerOnDark={headerOnDark} />
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
+            <Header headerOnDark={actionPage(pathsOnDark)} />
 
-                    <Box component="main" sx={{ flexGrow: 1 }}>
-                        {!(disabledSpacing || headerOnDark) && (
-                            <Box
-                                sx={{
-                                    height: { xs: HEADER.H_MOBILE, md: HEADER.H_DESKTOP },
-                                }}
-                            />
-                        )}
+            <Box
+                component="main"
+                sx={{
+                    flexGrow: 1,
+                    pt: 10,
+                }}
+            >
+                {!actionPage(spacingLayout) && <Spacing />}
 
-                        {children}
-                    </Box>
+                {children}
+            </Box>
 
-                    <Footer />
-                </Box>
-            </ThemeProvider>
-        </SettingsProvider>
+            <Footer />
+        </Box>
     );
-};
+}
+
+// ----------------------------------------------------------------------
+
+function Spacing() {
+    return (
+        <Box
+            sx={{
+                height: { xs: HEADER.H_MOBILE, md: HEADER.H_DESKTOP },
+            }}
+        />
+    );
+}

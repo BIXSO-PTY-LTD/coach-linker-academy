@@ -3,18 +3,22 @@ import Button, { buttonClasses } from '@mui/material/Button';
 import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack, { StackProps } from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 import { alpha, styled } from '@mui/material/styles';
 
-import { Iconify, Logo, RouterLink } from '#shared/components';
-import { useBoolean, usePathname, useResponsive } from '#shared/hooks';
-import { navConfig, pageLinks } from './config-navigation';
+import { _socials } from '#shared/_mock';
+import { Logo, RouterLink } from '#shared/components';
+import Iconify from '#shared/components/iconify';
+import { useBoolean, useResponsive } from '#shared/hooks';
+import { usePathname } from 'next/navigation';
+import { navConfig, navSupport } from './config-navigation';
 import { NavSubListProps } from './nav/types';
+
+// ----------------------------------------------------------------------
 
 const StyledAppStoreButton = styled(Button)(({ theme }) => ({
     flexShrink: 0,
@@ -27,28 +31,10 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
     },
 }));
 
+// ----------------------------------------------------------------------
+
 export default function Footer() {
     const mdUp = useResponsive('up', 'md');
-
-    const pathname = usePathname();
-
-    const mobileList = navConfig.find((i) => i.title === 'Pages')?.children || [];
-
-    const desktopList = pageLinks.sort((listA, listB) => Number(listA.order) - Number(listB.order));
-
-    const renderLists = mdUp ? desktopList : mobileList;
-
-    const isHome = pathname === '/';
-
-    const simpleFooter = (
-        <Container sx={{ py: 8, textAlign: 'center' }}>
-            <Logo />
-
-            <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }}>
-                © 2023. All rights reserved
-            </Typography>
-        </Container>
-    );
 
     const mainFooter = (
         <>
@@ -67,63 +53,20 @@ export default function Footer() {
                                 <Logo />
 
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    The starting point for your next project based on easy-to-customize Material-UI ©
-                                    helps you build apps faster and better.
+                                    Chúng tôi tự hào mang lại điều tốt nhất cho mọi khách hàng. Với cam kết chất lượng,
+                                    sự tận tâm và dịch vụ đa dạng, chúng tôi không chỉ đáp ứng mà còn vượt xa kỳ vọng
+                                    của bạn.
                                 </Typography>
                             </Stack>
 
-                            <Stack spacing={1} alignItems="flex-start">
-                                <Typography variant="h6">Community</Typography>
-                                <Link variant="body2" sx={{ color: 'text.primary' }}>
-                                    Documentation
-                                </Link>
-
-                                <Link variant="body2" sx={{ color: 'text.primary' }}>
-                                    Changelog
-                                </Link>
-
-                                <Link variant="body2" sx={{ color: 'text.primary' }}>
-                                    Contributing
-                                </Link>
-                            </Stack>
-
                             <Stack spacing={2}>
-                                <Stack spacing={1}>
-                                    <Typography variant="h6">Let’s stay in touch</Typography>
-                                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                                        Ubscribe to our newsletter to receive latest articles to your inbox weekly.
-                                    </Typography>
-                                </Stack>
-
-                                <TextField
-                                    fullWidth
-                                    hiddenLabel
-                                    placeholder="Email address"
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <Button
-                                                    variant="contained"
-                                                    color="inherit"
-                                                    size="large"
-                                                    sx={{ mr: -1.25 }}
-                                                >
-                                                    Subscribe
-                                                </Button>
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </Stack>
-
-                            <Stack spacing={2}>
-                                <Typography variant="h6">Social</Typography>
+                                <Typography variant="h6">Liên kết</Typography>
                                 <Stack direction="row" alignItems="center">
-                                    {/* {_socials.map((social) => (
+                                    {_socials.map((social) => (
                                         <IconButton key={social.value} color="primary">
                                             <Iconify icon={social.icon} />
                                         </IconButton>
-                                    ))} */}
+                                    ))}
                                 </Stack>
                             </Stack>
 
@@ -136,86 +79,74 @@ export default function Footer() {
 
                     <Grid xs={12} md={6}>
                         {mdUp ? (
-                            <Masonry columns={4} spacing={2} defaultColumns={4} defaultSpacing={2}>
-                                {renderLists.map((list) => (
-                                    <ListDesktop key={list.subheader} list={list} />
-                                ))}
-                            </Masonry>
+                            <Stack direction="row">
+                                <Masonry columns={1} spacing={2} defaultColumns={4} defaultSpacing={2}>
+                                    <Typography variant="subtitle2">Tổng Quan</Typography>
+                                    {navConfig.map((list) => (
+                                        <ListDesktop key={list.title} list={list} />
+                                    ))}
+                                </Masonry>
+
+                                <Masonry columns={1} spacing={2} defaultColumns={4} defaultSpacing={2}>
+                                    <Typography variant="subtitle2">Hỗ trợ khách hàng</Typography>
+                                    {navSupport.map((list) => (
+                                        <ListDesktop key={list.title} list={list} />
+                                    ))}
+                                </Masonry>
+                            </Stack>
                         ) : (
-                            <Stack spacing={1.5}>
-                                {renderLists.map((list) => (
-                                    <ListMobile key={list.subheader} list={list} />
-                                ))}
+                            <Stack spacing={3}>
+                                <Stack spacing={1.5}>
+                                    {navConfig.map((list) => (
+                                        <ListMobile key={list.title} list={list} />
+                                    ))}
+                                </Stack>
+                                <Stack spacing={1.5}>
+                                    {navSupport.map((list) => (
+                                        <ListMobile key={list.title} list={list} />
+                                    ))}
+                                </Stack>
                             </Stack>
                         )}
                     </Grid>
                 </Grid>
             </Container>
-
-            <Divider />
-
-            <Container>
-                <Stack
-                    spacing={2.5}
-                    direction={{ xs: 'column', md: 'row' }}
-                    justifyContent="space-between"
-                    sx={{ py: 3, textAlign: 'center' }}
-                >
-                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                        © 2023. All rights reserved
-                    </Typography>
-
-                    <Stack direction="row" spacing={3} justifyContent="center">
-                        <Link variant="caption" sx={{ color: 'text.secondary' }}>
-                            Help Center
-                        </Link>
-
-                        <Link variant="caption" sx={{ color: 'text.secondary' }}>
-                            Terms of Service
-                        </Link>
-                    </Stack>
-                </Stack>
-            </Container>
         </>
     );
 
-    return <footer>{isHome ? simpleFooter : mainFooter}</footer>;
+    return <footer>{mainFooter}</footer>;
 }
+
+// ----------------------------------------------------------------------
 
 export function ListDesktop({ list }: { list: NavSubListProps }) {
     const pathname = usePathname();
-
+    const active = pathname === list.path || pathname === `${list.path}/`;
     return (
         <Stack spacing={1.5} alignItems="flex-start">
-            <Typography variant="subtitle2">{list.subheader}</Typography>
-
-            {list.items?.map((link) => {
-                const active = pathname === link.path || pathname === `${link.path}/`;
-
-                return (
-                    <Link
-                        component={RouterLink}
-                        key={link.title}
-                        href={link.path}
-                        variant="caption"
-                        sx={{
-                            color: 'text.secondary',
-                            '&:hover': {
-                                color: 'text.primary',
-                            },
-                            ...(active && {
-                                color: 'text.primary',
-                                fontWeight: 'fontWeightSemiBold',
-                            }),
-                        }}
-                    >
-                        {link.title}
-                    </Link>
-                );
-            })}
+            <Link
+                component={RouterLink}
+                key={list.title}
+                href={list.path}
+                variant="caption"
+                sx={{
+                    color: 'text.secondary',
+                    '&:hover': {
+                        color: 'text.primary',
+                    },
+                    ...(active && {
+                        color: 'text.primary',
+                        fontWeight: 'fontWeightSemiBold',
+                    }),
+                }}
+            >
+                {list.title}
+            </Link>
         </Stack>
     );
 }
+
+// ----------------------------------------------------------------------
 
 export function ListMobile({ list }: { list: NavSubListProps }) {
     const pathname = usePathname();
@@ -233,7 +164,7 @@ export function ListMobile({ list }: { list: NavSubListProps }) {
                     alignItems: 'center',
                 }}
             >
-                {list.subheader}
+                {list.title}
                 <Iconify
                     width={16}
                     icon={listExpand.value ? 'carbon:chevron-down' : 'carbon:chevron-right'}
@@ -243,31 +174,31 @@ export function ListMobile({ list }: { list: NavSubListProps }) {
 
             <Collapse in={listExpand.value} unmountOnExit sx={{ width: 1 }}>
                 <Stack spacing={1.5} alignItems="flex-start">
-                    {list.items?.map((link) => (
-                        <Link
-                            component={RouterLink}
-                            key={link.title}
-                            href={link.path}
-                            variant="caption"
-                            sx={{
-                                color: 'text.secondary',
-                                '&:hover': {
-                                    color: 'text.primary',
-                                },
-                                ...(pathname === `${link.path}/` && {
-                                    color: 'text.primary',
-                                    fontWeight: 'fontWeightSemiBold',
-                                }),
-                            }}
-                        >
-                            {link.title}
-                        </Link>
-                    ))}
+                    <Link
+                        component={RouterLink}
+                        key={list.title}
+                        href={list.path}
+                        variant="caption"
+                        sx={{
+                            color: 'text.secondary',
+                            '&:hover': {
+                                color: 'text.primary',
+                            },
+                            ...(pathname === `${list.path}/` && {
+                                color: 'text.primary',
+                                fontWeight: 'fontWeightSemiBold',
+                            }),
+                        }}
+                    >
+                        {list.title}
+                    </Link>
                 </Stack>
             </Collapse>
         </Stack>
     );
 }
+
+// ----------------------------------------------------------------------
 
 function AppStoreButton({ ...other }: StackProps) {
     return (

@@ -1,29 +1,17 @@
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import ListItemButton from '@mui/material/ListItemButton';
-import { alpha, styled } from '@mui/material/styles';
 import { forwardRef } from 'react';
 
-import { Iconify, RouterLink } from '#shared/components';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import { alpha, styled } from '@mui/material/styles';
+import ListItemButton from '@mui/material/ListItemButton';
+
 import { NavItemProps, NavItemStateProps } from '../types';
+import Iconify from '#shared/components/iconify';
+import { RouterLink } from '#shared/components';
 
-const StyledNavItem = styled(ListItemButton, {
-    shouldForwardProp: (prop) => prop !== 'active',
-})<NavItemStateProps>(({ active, theme }) => ({
-    ...theme.typography.body1,
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(1.5),
-    color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontFamily: theme.typography.fontSecondaryFamily,
-    ...(active && {
-        color: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightSemiBold,
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-    }),
-}));
+// ----------------------------------------------------------------------
 
-export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
+const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
     ({ title, path, open, active, hasChild, externalLink, ...other }, ref) => {
         const renderContent = (
             <StyledNavItem ref={ref} active={active} {...other}>
@@ -60,5 +48,24 @@ export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
         );
     },
 );
-
 NavItem.displayName = 'NavItem';
+
+export default NavItem;
+
+// ----------------------------------------------------------------------
+
+const StyledNavItem = styled(ListItemButton, {
+    shouldForwardProp: (prop) => prop !== 'active',
+})<NavItemStateProps>(({ active, theme }) => ({
+    ...theme.typography.body1,
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(1.5),
+    color: theme.palette.text.primary,
+    fontWeight: theme.typography.fontWeightMedium,
+    fontFamily: theme.typography.fontSecondaryFamily,
+    ...(active && {
+        color: theme.palette.primary.main,
+        fontWeight: theme.typography.fontWeightSemiBold,
+        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    }),
+}));

@@ -1,31 +1,35 @@
 'use client';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+
 import { m } from 'framer-motion';
 
-import { Image, RouterLink } from '#shared/components';
-import { MotionContainer, varBounce } from '#shared/components/animate';
-import { useTranslations } from '#shared/hooks';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { CompactLayout } from '#shared/layouts';
+import { MotionContainer, varBounce } from '#shared/components/animate';
+import { Image, RouterLink } from '#shared/components';
 
-export const NotFoundPage = () => {
-    const translate = useTranslations();
+// ----------------------------------------------------------------------
 
+export default function NotFoundView() {
     return (
         <CompactLayout>
             <MotionContainer>
                 <m.div variants={varBounce().in}>
                     <Typography variant="h3" paragraph>
-                        {translate('not-found.title')}
+                        Page Not Found!
                     </Typography>
                 </m.div>
 
                 <m.div variants={varBounce().in}>
-                    <Typography sx={{ color: 'text.secondary' }}>{translate('not-found.message')}</Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>
+                        Sorry, we couldn’t find the page you’re looking for. Perhaps you’ve mistyped the URL? Be sure to
+                        check your spelling.
+                    </Typography>
                 </m.div>
 
                 <m.div variants={varBounce().in}>
                     <Image
+                        disabledEffect
                         alt="404"
                         src="/assets/images/illustrations/illustration_404.svg"
                         sx={{
@@ -37,9 +41,9 @@ export const NotFoundPage = () => {
                 </m.div>
 
                 <Button component={RouterLink} href="/" size="large" color="inherit" variant="contained">
-                    {translate('not-found.btnBack')}
+                    Go to Home
                 </Button>
             </MotionContainer>
         </CompactLayout>
     );
-};
+}

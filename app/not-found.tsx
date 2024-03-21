@@ -1,11 +1,11 @@
-import { NotFoundPage } from '#app/not-found/index';
+import NotFoundView from './(not-found)';
+
+// ----------------------------------------------------------------------
 
 export const metadata = {
     title: '404 Page Not Found!',
 };
 
-const NotFoundPageRoute = () => {
-    return <NotFoundPage />;
-};
-
-export default NotFoundPageRoute;
+export default function NotFoundPage() {
+    return <NotFoundView />;
+}
