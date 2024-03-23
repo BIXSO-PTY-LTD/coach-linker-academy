@@ -2,6 +2,7 @@ export type T_SettingsValueProps = {
     themeMode: 'light' | 'dark';
     themeDirection: 'rtl' | 'ltr';
     themeColorPresets: 'default' | 'preset01' | 'preset02' | 'preset03' | 'preset04' | 'preset05';
+    themeLayout: 'vertical' | 'horizontal' | 'mini';
 };
 
 export type T_SettingsContextProps = T_SettingsValueProps & {
