@@ -1,6 +1,9 @@
 const ROOTS = {
     AUTH: '/auth',
-    DASHBOARD: '/dashboard',
+    MANAGEMENT: {
+        COACH: '/management/coach',
+        STUDENT: '/management/student',
+    },
 };
 
 export const PATHS = {
@@ -10,12 +13,14 @@ export const PATHS = {
         REGISTER: `${ROOTS.AUTH}/register`,
         FORGOT_PASSWORD: `${ROOTS.AUTH}/forgot-password`,
     },
-    DASHBOARD: {
-        ROOT: ROOTS.DASHBOARD,
-        STATISTICAL: `${ROOTS.DASHBOARD}/statistical`,
-        STUDENTS: `${ROOTS.DASHBOARD}/studens`,
-        SCHEDULER: `${ROOTS.DASHBOARD}/schudler`,
-        COURSES: `${ROOTS.DASHBOARD}/courses`,
-        SETTINGS: `${ROOTS.DASHBOARD}/settings`,
+    MANAGEMENT: {
+        COACH: {
+            PROFILE: `${ROOTS.MANAGEMENT.COACH}/profile`,
+            STATISTIC: `${ROOTS.MANAGEMENT.COACH}/statistic`,
+            STUDENTS: `${ROOTS.MANAGEMENT.COACH}/students`,
+            SCHEDULER: `${ROOTS.MANAGEMENT.COACH}/scheduler`,
+            COURSES: `${ROOTS.MANAGEMENT.COACH}/courses`,
+            SETTINGS: `${ROOTS.MANAGEMENT.COACH}/settings`,
+        },
     },
 };

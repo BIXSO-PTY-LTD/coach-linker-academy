@@ -1,10 +1,6 @@
 import { usePathname } from 'next/navigation';
 
-// ----------------------------------------------------------------------
-
-type ReturnType = boolean;
-
-export function useActiveLink(path: string, deep = true): ReturnType {
+export const useActiveLink = (path: string, deep = true): boolean => {
     const pathname = usePathname();
 
     const checkPath = path.startsWith('#');
@@ -16,4 +12,4 @@ export function useActiveLink(path: string, deep = true): ReturnType {
     const deepActive = !checkPath && pathname.includes(currentPath);
 
     return deep ? deepActive : normalActive;
-}
+};
