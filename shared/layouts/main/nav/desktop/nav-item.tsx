@@ -1,13 +1,9 @@
-import { forwardRef } from 'react';
-
 import Link from '@mui/material/Link';
 import ListItemButton from '@mui/material/ListItemButton';
 import { styled } from '@mui/material/styles';
+import { forwardRef } from 'react';
 
-import { RouterLink } from '#shared/components';
-
-import { Iconify } from '#shared/components';
-
+import { Iconify, RouterLink } from '#shared/components';
 import { NavItemProps, NavItemStateProps } from '../types';
 
 const StyledNavItem = styled(ListItemButton, {

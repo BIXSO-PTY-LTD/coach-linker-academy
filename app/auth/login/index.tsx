@@ -1,8 +1,5 @@
 'use client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-
 import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -11,11 +8,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 import { PATHS } from '#app/routes';
 import { Form, Iconify, RouterLink, TextField } from '#shared/components';
 import { useBoolean } from '#shared/hooks';
-import { useRouter } from 'next/navigation';
 
 export const LoginPage = () => {
     const passwordShow = useBoolean();
@@ -48,7 +47,7 @@ export const LoginPage = () => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 500));
             // reset();
-            router.push(PATHS.DASHBOARD.ROOT);
+            router.push('#');
             console.log('DATA', data);
         } catch (error) {
             console.error(error);

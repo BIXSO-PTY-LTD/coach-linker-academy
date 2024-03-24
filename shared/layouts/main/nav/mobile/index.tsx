@@ -3,15 +3,16 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 import { Iconify, Logo, Scrollbar } from '#shared/components';
 import { NAV } from '#shared/constants';
-import { useBoolean, usePathname } from '#shared/hooks';
+import { useBoolean } from '#shared/hooks';
 import { NavProps } from '../types';
 import { NavList } from './nav-list';
 
-export default function NavMobile({ data }: NavProps) {
+export const NavMobile = ({ data }: NavProps) => {
     const pathname = usePathname();
 
     const mobileOpen = useBoolean();
@@ -49,7 +50,7 @@ export default function NavMobile({ data }: NavProps) {
                     </List>
 
                     <Stack spacing={1.5} sx={{ p: 3 }}>
-                        <Button fullWidth variant="contained" color="inherit" href={'#'} target="_blank" rel="noopener">
+                        <Button fullWidth variant="contained" color="inherit">
                             Buy Now
                         </Button>
                     </Stack>
@@ -57,4 +58,4 @@ export default function NavMobile({ data }: NavProps) {
             </Drawer>
         </>
     );
-}
+};

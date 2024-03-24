@@ -10,7 +10,7 @@ import { NavHorizontal } from './nav-horizontal';
 import { NavMini } from './nav-mini';
 import { NavVertical } from './nav-vertical';
 
-const DashboardWrapper = ({ children }: I_Children) => {
+const DashboardLayoutContent = ({ children }: I_Children) => {
     const settings = useSettingsContextDashboard();
 
     const lgUp = useResponsive('up', 'lg');
@@ -91,7 +91,7 @@ export const DashboardLayout = ({ children }: I_Children) => {
             }}
         >
             <ThemeProvider>
-                <DashboardWrapper>{children}</DashboardWrapper>
+                <DashboardLayoutContent>{children}</DashboardLayoutContent>
             </ThemeProvider>
         </SettingsProviderDashboard>
     );

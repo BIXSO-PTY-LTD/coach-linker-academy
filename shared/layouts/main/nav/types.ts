@@ -30,13 +30,8 @@ export type NavListProps = {
 };
 
 export type NavSubListProps = {
-    subheader: string;
-    isNew?: boolean;
-    cover?: string;
-    items: {
-        title: string;
-        path: string;
-    }[];
+    title: string;
+    path: string;
 };
 
 export type NavProps = StackProps & {

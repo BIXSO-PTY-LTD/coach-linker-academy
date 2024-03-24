@@ -10,11 +10,9 @@ import Typography from '@mui/material/Typography';
 import { alpha } from '@mui/material/styles';
 
 import { PATHS } from '#app/routes';
-import { useRouter } from '#shared/hooks';
-
 import { CustomPopover } from '#shared/components';
-import { varHover } from '#shared/constants';
-import { useAuthContext, useMockedUser, usePopover, useSnackbar } from '#shared/hooks';
+import { varHover } from '#shared/components/animate';
+import { useAuthContext, useMockedUser, usePopover, useRouter, useSnackbar } from '#shared/hooks';
 
 const OPTIONS = [
     {

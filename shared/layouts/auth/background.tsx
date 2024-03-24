@@ -1,10 +1,12 @@
 import Stack from '@mui/material/Stack';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { SettingsProvider } from '#shared/contexts';
+import { ThemeProvider } from '#shared/theme';
 import { bgGradient } from '#shared/theme/css';
 import { I_Children } from '#shared/typescript';
 
-export const AuthBackgroundLayout = ({ children }: I_Children) => {
+export const AuthBackgroundLayoutContent = ({ children }: I_Children) => {
     const theme = useTheme();
 
     return (
@@ -40,3 +42,17 @@ export const AuthBackgroundLayout = ({ children }: I_Children) => {
         </Stack>
     );
 };
+
+export const AuthBackgroundLayout = ({ children }: I_Children) => (
+    <SettingsProvider
+        defaultSettings={{
+            themeMode: 'light',
+            themeDirection: 'ltr',
+            themeColorPresets: 'default',
+        }}
+    >
+        <ThemeProvider>
+            <AuthBackgroundLayoutContent>{children}</AuthBackgroundLayoutContent>
+        </ThemeProvider>
+    </SettingsProvider>
+);

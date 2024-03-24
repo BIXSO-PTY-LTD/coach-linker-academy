@@ -32,7 +32,11 @@ export const Bubble = ({ children, icon, open, toggleOpen }: I_BubbleProps) => {
         <>
             <Draggable nodeRef={bubbleRef} onDrag={handleDragging}>
                 <div ref={bubbleRef} className="fixed bottom-5 right-5 cursor-grab active:cursor-grabbing">
-                    <IconButton style={{ color: 'black' }} aria-describedby={'bubblePopover'} onClick={handleClick}>
+                    <IconButton
+                        className="w-[40px] h-[40px] !rounded-full !text-black"
+                        aria-describedby={'bubblePopover'}
+                        onClick={handleClick}
+                    >
                         {icon}
                     </IconButton>
                 </div>
