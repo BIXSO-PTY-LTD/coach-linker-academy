@@ -11,14 +11,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { alpha, styled } from '@mui/material/styles';
 
 import { _socials } from '#shared/_mock';
-import { Logo, RouterLink } from '#shared/components';
-import Iconify from '#shared/components/iconify';
+import { Iconify, Logo, RouterLink } from '#shared/components';
 import { useBoolean, useResponsive } from '#shared/hooks';
 import { usePathname } from 'next/navigation';
 import { navConfig, navSupport } from './config-navigation';
 import { NavSubListProps } from './nav/types';
-
-// ----------------------------------------------------------------------
 
 const StyledAppStoreButton = styled(Button)(({ theme }) => ({
     flexShrink: 0,
@@ -30,8 +27,6 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
         marginLeft: 0,
     },
 }));
-
-// ----------------------------------------------------------------------
 
 export default function Footer() {
     const mdUp = useResponsive('up', 'md');
@@ -117,8 +112,6 @@ export default function Footer() {
     return <footer>{mainFooter}</footer>;
 }
 
-// ----------------------------------------------------------------------
-
 export function ListDesktop({ list }: { list: NavSubListProps }) {
     const pathname = usePathname();
     const active = pathname === list.path || pathname === `${list.path}/`;
@@ -145,8 +138,6 @@ export function ListDesktop({ list }: { list: NavSubListProps }) {
         </Stack>
     );
 }
-
-// ----------------------------------------------------------------------
 
 export function ListMobile({ list }: { list: NavSubListProps }) {
     const pathname = usePathname();
@@ -197,8 +188,6 @@ export function ListMobile({ list }: { list: NavSubListProps }) {
         </Stack>
     );
 }
-
-// ----------------------------------------------------------------------
 
 function AppStoreButton({ ...other }: StackProps) {
     return (

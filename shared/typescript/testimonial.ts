@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 export type ITestimonialProps = {
     id: string;
     name: string;

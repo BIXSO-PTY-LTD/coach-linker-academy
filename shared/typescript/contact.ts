@@ -1,5 +1,3 @@
-// ----------------------------------------------------------------------
-
 export type ICountriesProps = {
     code: string;
     label: string;

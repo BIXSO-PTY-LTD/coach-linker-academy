@@ -8,8 +8,7 @@ import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import { PATHS } from '#app/routes';
-import { Form, Image, RouterLink, TextField } from '#shared/components';
-import Iconify from '#shared/components/iconify';
+import { Form, Iconify, Image, RouterLink, TextField } from '#shared/components';
 
 export const ForgotPasswordPage = () => {
     const ForgotPasswordSchema = Yup.object().shape({

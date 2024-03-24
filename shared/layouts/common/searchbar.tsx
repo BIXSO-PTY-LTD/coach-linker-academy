@@ -1,15 +1,14 @@
-import Slide from '@mui/material/Slide';
-import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { Theme, alpha, styled, SxProps } from '@mui/material/styles';
-import { HEADER } from '../config-layout';
-import { useBoolean } from '#shared/hooks';
-import Iconify from '#shared/components/iconify';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import Slide from '@mui/material/Slide';
+import { SxProps, Theme, alpha, styled } from '@mui/material/styles';
 
-// ----------------------------------------------------------------------
+import { Iconify } from '#shared/components';
+import { HEADER } from '#shared/constants';
+import { useBoolean } from '#shared/hooks';
 
 const StyledSearchbar = styled('div')(({ theme }) => ({
     top: 0,
@@ -31,13 +30,11 @@ const StyledSearchbar = styled('div')(({ theme }) => ({
     },
 }));
 
-// ----------------------------------------------------------------------
-
-type SearchbarProps = {
+type T_SearchbarProps = {
     sx?: SxProps<Theme>;
 };
 
-export default function Searchbar({ sx }: SearchbarProps) {
+export const Searchbar = ({ sx }: T_SearchbarProps) => {
     const searchOpen = useBoolean();
 
     return (
@@ -69,4 +66,4 @@ export default function Searchbar({ sx }: SearchbarProps) {
             </div>
         </ClickAwayListener>
     );
-}
+};

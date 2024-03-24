@@ -1,20 +1,18 @@
-import { m } from 'framer-motion';
-
+import Badge, { badgeClasses } from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
-import { Theme, SxProps } from '@mui/material/styles';
-import Badge, { badgeClasses } from '@mui/material/Badge';
-import { useSettingsContext } from '#shared/contexts';
+import { SxProps, Theme } from '@mui/material/styles';
+import { m } from 'framer-motion';
+
+import { Iconify } from '#shared/components';
 import { varHover } from '#shared/components/animate';
-import Iconify from '#shared/components/iconify';
+import { useSettingsContext } from '#shared/hooks';
 
-// ----------------------------------------------------------------------
-
-type Props = {
+type T_SettingsButtonProps = {
     sx?: SxProps<Theme>;
 };
 
-export default function SettingsButton({ sx }: Props) {
+export const SettingsButton = ({ sx }: T_SettingsButtonProps) => {
     const settings = useSettingsContext();
 
     return (
@@ -55,4 +53,4 @@ export default function SettingsButton({ sx }: Props) {
             </Box>
         </Badge>
     );
-}
+};

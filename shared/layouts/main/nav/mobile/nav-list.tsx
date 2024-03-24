@@ -1,13 +1,8 @@
-import Collapse from '@mui/material/Collapse';
-
-import NavItem from './nav-item';
+import { useActiveLink, useBoolean } from '#shared/hooks';
 import { NavListProps } from '../types';
-import { useActiveLink } from '#shared/routes/hooks/use-active-link';
-import { useBoolean } from '#shared/hooks';
+import { NavItem } from './nav-item';
 
-// ----------------------------------------------------------------------
-
-export default function NavList({ data }: NavListProps) {
+export const NavList = ({ data }: NavListProps) => {
     const active = useActiveLink(data.path, !!data.children);
 
     const menuOpen = useBoolean();
@@ -44,4 +39,4 @@ export default function NavList({ data }: NavListProps) {
       )} */}
         </>
     );
-}
+};

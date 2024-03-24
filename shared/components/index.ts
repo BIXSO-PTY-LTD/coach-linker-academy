@@ -1,5 +1,7 @@
 'use client';
+export * from './animate';
 export * from './bubble';
+export * from './carousel';
 export * from './custom-popover';
 export * from './form';
 export * from './header-shadow';
@@ -11,7 +13,10 @@ export * from './logo';
 export * from './nav-section';
 export * from './nav-toggle-button';
 export * from './nav-upgrade';
+export * from './player';
+export * from './progress-bar';
 export * from './router-link';
 export * from './scrollbar';
 export * from './svg-color';
 export * from './text-field';
+export * from './text-max-line';

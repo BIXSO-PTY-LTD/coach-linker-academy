@@ -1,6 +1,4 @@
-import { format, getTime, formatDistanceToNow } from 'date-fns';
-
-// ----------------------------------------------------------------------
+import { format, formatDistanceToNow, getTime } from 'date-fns';
 
 type InputValue = Date | string | number | null;
 

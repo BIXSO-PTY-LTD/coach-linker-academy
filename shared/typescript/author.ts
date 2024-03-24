@@ -1,7 +1,5 @@
 import { ISocialLinks } from './socials';
 
-// ----------------------------------------------------------------------
-
 export type IAuthorProps = {
     name: string;
     role: string;

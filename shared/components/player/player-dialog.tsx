@@ -1,23 +1,20 @@
+import CircularProgress from '@mui/material/CircularProgress';
+import Dialog from '@mui/material/Dialog';
+import IconButton from '@mui/material/IconButton';
+import { alpha } from '@mui/material/styles';
 import { ReactPlayerProps } from 'react-player';
 
-import Dialog from '@mui/material/Dialog';
-import { alpha } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import CircularProgress from '@mui/material/CircularProgress';
-
-import { StyledReactPlayer } from './styles';
+import { Iconify } from '#shared/components';
 import { useBoolean } from '#shared/hooks';
-import Iconify from '../iconify';
+import { StyledReactPlayer } from './styles';
 
-// ----------------------------------------------------------------------
-
-interface Props extends ReactPlayerProps {
+interface I_PlayerDialogProps extends ReactPlayerProps {
     open: boolean;
     videoPath: string;
     onClose: VoidFunction;
 }
 
-export default function PlayerDialog({ videoPath, open, onClose, ...other }: Props) {
+export const PlayerDialog = ({ videoPath, open, onClose, ...other }: I_PlayerDialogProps) => {
     const loading = useBoolean(true);
 
     return (
@@ -62,4 +59,4 @@ export default function PlayerDialog({ videoPath, open, onClose, ...other }: Pro
             <StyledReactPlayer url={videoPath} playing={!loading.value} onReady={loading.onFalse} {...other} />
         </Dialog>
     );
-}
+};

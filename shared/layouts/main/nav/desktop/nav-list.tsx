@@ -1,23 +1,44 @@
-import { useEffect, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
-import Stack from '@mui/material/Stack';
+import ListSubheader from '@mui/material/ListSubheader';
 import Paper from '@mui/material/Paper';
 import Portal from '@mui/material/Portal';
+import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
-import ListSubheader from '@mui/material/ListSubheader';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
 
-import NavItem from './nav-item';
+import { useActiveLink, useBoolean } from '#shared/hooks';
 import { navConfig } from '../../config-navigation';
 import { NavListProps, NavSubListProps } from '../types';
-import { usePathname } from 'next/navigation';
-import { useBoolean } from '#shared/hooks';
-import { useActiveLink } from '#shared/routes/hooks/use-active-link';
+import { NavItem } from './nav-item';
 
-// ----------------------------------------------------------------------
+function NavSubList({ title, path }: NavSubListProps) {
+    const pathname = usePathname();
 
-export default function NavList({ data }: NavListProps) {
+    const active = pathname === path || pathname === `${path}/`;
+
+    return (
+        <Stack spacing={2}>
+            <ListSubheader
+                sx={{
+                    p: 0,
+                    typography: 'h6',
+                    color: 'text.primary',
+                    bgcolor: 'transparent',
+                }}
+            >
+                {title}
+            </ListSubheader>
+
+            <Stack spacing={1.5} alignItems="flex-start">
+                <NavItem key={title} title={title} path={path} active={active} subItem />
+            </Stack>
+        </Stack>
+    );
+}
+
+export const NavList = ({ data }: NavListProps) => {
     const pathname = usePathname();
 
     const menuOpen = useBoolean();
@@ -93,31 +114,4 @@ export default function NavList({ data }: NavListProps) {
             )}
         </>
     );
-}
-
-// ----------------------------------------------------------------------
-
-function NavSubList({ title, path }: NavSubListProps) {
-    const pathname = usePathname();
-
-    const active = pathname === path || pathname === `${path}/`;
-
-    return (
-        <Stack spacing={2}>
-            <ListSubheader
-                sx={{
-                    p: 0,
-                    typography: 'h6',
-                    color: 'text.primary',
-                    bgcolor: 'transparent',
-                }}
-            >
-                {title}
-            </ListSubheader>
-
-            <Stack spacing={1.5} alignItems="flex-start">
-                <NavItem key={title} title={title} path={path} active={active} subItem />
-            </Stack>
-        </Stack>
-    );
-}
+};

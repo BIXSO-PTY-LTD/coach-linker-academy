@@ -1,56 +1,10 @@
+import Link from '@mui/material/Link';
+import ListItemButton from '@mui/material/ListItemButton';
+import { styled } from '@mui/material/styles';
 import { forwardRef } from 'react';
 
-import Link from '@mui/material/Link';
-import { styled } from '@mui/material/styles';
-import ListItemButton from '@mui/material/ListItemButton';
-
+import { Iconify, RouterLink } from '#shared/components';
 import { NavItemProps, NavItemStateProps } from '../types';
-import Iconify from '#shared/components/iconify';
-import { RouterLink } from '#shared/components';
-
-// ----------------------------------------------------------------------
-
-const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
-    ({ title, path, open, active, subItem, hasChild, externalLink, ...other }, ref) => {
-        const renderContent = (
-            <StyledNavItem
-                disableRipple
-                disableTouchRipple
-                ref={ref}
-                open={open}
-                active={active}
-                subItem={subItem}
-                {...other}
-            >
-                {title}
-
-                {hasChild && <Iconify width={16} icon="carbon:chevron-down" sx={{ ml: 0.75 }} />}
-            </StyledNavItem>
-        );
-
-        if (hasChild) {
-            return renderContent;
-        }
-
-        if (externalLink) {
-            return (
-                <Link href={path} target="_blank" rel="noopener" color="inherit" underline="none">
-                    {renderContent}
-                </Link>
-            );
-        }
-
-        return (
-            <Link component={RouterLink} href={path} color="inherit" underline="none">
-                {renderContent}
-            </Link>
-        );
-    },
-);
-NavItem.displayName = 'NavItem';
-export default NavItem;
-
-// ----------------------------------------------------------------------
 
 const StyledNavItem = styled(ListItemButton, {
     shouldForwardProp: (prop) => prop !== 'active' && prop !== 'subItem',
@@ -119,3 +73,43 @@ const StyledNavItem = styled(ListItemButton, {
         }),
     };
 });
+
+export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
+    ({ title, path, open, active, subItem, hasChild, externalLink, ...other }, ref) => {
+        const renderContent = (
+            <StyledNavItem
+                disableRipple
+                disableTouchRipple
+                ref={ref}
+                open={open}
+                active={active}
+                subItem={subItem}
+                {...other}
+            >
+                {title}
+
+                {hasChild && <Iconify width={16} icon="carbon:chevron-down" sx={{ ml: 0.75 }} />}
+            </StyledNavItem>
+        );
+
+        if (hasChild) {
+            return renderContent;
+        }
+
+        if (externalLink) {
+            return (
+                <Link href={path} target="_blank" rel="noopener" color="inherit" underline="none">
+                    {renderContent}
+                </Link>
+            );
+        }
+
+        return (
+            <Link component={RouterLink} href={path} color="inherit" underline="none">
+                {renderContent}
+            </Link>
+        );
+    },
+);
+
+NavItem.displayName = 'NavItem';

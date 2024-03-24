@@ -1,9 +1,7 @@
 import { memo } from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-
-// ----------------------------------------------------------------------
+import { useTheme } from '@mui/material/styles';
 
 function Shape({ ...other }: BoxProps) {
     const theme = useTheme();

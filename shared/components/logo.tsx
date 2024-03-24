@@ -1,91 +1,54 @@
-import { forwardRef } from 'react';
-
 import Box, { BoxProps } from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import { useTheme } from '@mui/material/styles';
+import { memo } from 'react';
 
 import { RouterLink } from '#shared/components';
 
-export interface I_LogoProps extends BoxProps {
-    disabledLink?: boolean;
+interface T_LogoProps extends BoxProps {
+    single?: boolean;
 }
 
-export const Logo = forwardRef<HTMLDivElement, I_LogoProps>(({ disabledLink = false, sx, ...other }, ref) => {
+function LogoComponent({ single = false, sx }: T_LogoProps) {
     const theme = useTheme();
-
-    const PRIMARY_LIGHT = theme.palette.primary.light;
 
     const PRIMARY_MAIN = theme.palette.primary.main;
 
-    const PRIMARY_DARK = theme.palette.primary.dark;
-
-    // OR using local (public folder)
-    // -------------------------------------------------------
-    // const logo = (
-    //   <Box
-    //     component="img"
-    //     src="/logo/logo_single.svg" => your path
-    //     sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }}
-    //   />
-    // );
-
-    const logo = (
-        <Box
-            ref={ref}
-            component="div"
-            sx={{
-                width: 40,
-                height: 40,
-                display: 'inline-flex',
-                ...sx,
-            }}
-            {...other}
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
-                <defs>
-                    <linearGradient id="BG1" x1="100%" x2="50%" y1="9.946%" y2="50%">
-                        <stop offset="0%" stopColor={PRIMARY_DARK} />
-                        <stop offset="100%" stopColor={PRIMARY_MAIN} />
-                    </linearGradient>
-
-                    <linearGradient id="BG2" x1="50%" x2="50%" y1="0%" y2="100%">
-                        <stop offset="0%" stopColor={PRIMARY_LIGHT} />
-                        <stop offset="100%" stopColor={PRIMARY_MAIN} />
-                    </linearGradient>
-
-                    <linearGradient id="BG3" x1="50%" x2="50%" y1="0%" y2="100%">
-                        <stop offset="0%" stopColor={PRIMARY_LIGHT} />
-                        <stop offset="100%" stopColor={PRIMARY_MAIN} />
-                    </linearGradient>
-                </defs>
-
-                <g fill={PRIMARY_MAIN} fillRule="evenodd" stroke="none" strokeWidth="1">
-                    <path
-                        fill="url(#BG1)"
-                        d="M183.168 285.573l-2.918 5.298-2.973 5.363-2.846 5.095-2.274 4.043-2.186 3.857-2.506 4.383-1.6 2.774-2.294 3.939-1.099 1.869-1.416 2.388-1.025 1.713-1.317 2.18-.95 1.558-1.514 2.447-.866 1.38-.833 1.312-.802 1.246-.77 1.18-.739 1.111-.935 1.38-.664.956-.425.6-.41.572-.59.8-.376.497-.537.69-.171.214c-10.76 13.37-22.496 23.493-36.93 29.334-30.346 14.262-68.07 14.929-97.202-2.704l72.347-124.682 2.8-1.72c49.257-29.326 73.08 1.117 94.02 40.927z"
-                    />
-                    <path
-                        fill="url(#BG2)"
-                        d="M444.31 229.726c-46.27-80.956-94.1-157.228-149.043-45.344-7.516 14.384-12.995 42.337-25.267 42.337v-.142c-12.272 0-17.75-27.953-25.265-42.337C189.79 72.356 141.96 148.628 95.69 229.584c-3.483 6.106-6.828 11.932-9.69 16.996 106.038-67.127 97.11 135.667 184 137.278V384c86.891-1.611 77.962-204.405 184-137.28-2.86-5.062-6.206-10.888-9.69-16.994"
-                    />
-                    <path
-                        fill="url(#BG3)"
-                        d="M450 384c26.509 0 48-21.491 48-48s-21.491-48-48-48-48 21.491-48 48 21.491 48 48 48"
-                    />
-                </g>
-            </svg>
-        </Box>
+    const singleLogo = (
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 512 512">
+            <ellipse cx="405.143" cy="338.571" fill={PRIMARY_MAIN} rx="82.857" ry="82.857" />
+            <path
+                fill="currentColor"
+                d="M114.742 355.332H256v66.097H24v-61.376l140.323-203.956H24V90h232v61.376L114.742 355.332z"
+            />
+        </svg>
     );
 
-    if (disabledLink) {
-        return logo;
-    }
+    const fullLogo = (
+        <svg xmlns="http://www.w3.org/2000/svg " width="100%" height="100%" fill="none" viewBox="0 0 1080 288">
+            <ellipse cx="996" cy="204" fill={PRIMARY_MAIN} rx="60" ry="60" />
+            <path
+                fill="currentColor"
+                d="M712 264h-58.815l-98.37-148.034V264H496V24h58.815l98.37 148.718V24H712v240zM801.265 70.838v48.547H880v45.128h-78.735v52.649H888V264H744V24h144v46.838h-86.735zM344.333 264c-22 0-42.222-5.118-60.666-15.355-18.223-10.236-32.778-24.478-43.667-42.726-10.667-18.47-16-39.165-16-62.086s5.333-43.505 16-61.752c10.889-18.248 25.444-32.49 43.667-42.726C302.111 29.118 322.333 24 344.333 24s42.111 5.118 60.334 15.355C423.111 49.59 437.556 63.833 448 82.08c10.667 18.247 16 38.831 16 61.752s-5.333 43.616-16 62.086c-10.667 18.248-25.111 32.49-43.333 42.726C386.444 258.882 366.333 264 344.333 264zm0-52.072c18.667 0 33.556-6.231 44.667-18.693 11.333-12.462 17-28.929 17-49.402 0-20.695-5.667-37.163-17-49.402-11.111-12.462-26-18.692-44.667-18.692-18.889 0-34 6.12-45.333 18.358-11.111 12.24-16.667 28.818-16.667 49.736 0 20.696 5.556 37.274 16.667 49.736 11.333 12.239 26.444 18.359 45.333 18.359zM89.71 216.137H192V264H24v-44.444L125.613 71.863H24V24h168v44.444L89.71 216.137z"
+            />
+        </svg>
+    );
 
     return (
-        <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
-            {logo}
+        <Link component={RouterLink} href="/" color="inherit" aria-label="go to homepage" sx={{ lineHeight: 0 }}>
+            <Box
+                sx={{
+                    width: single ? 64 : 75,
+                    lineHeight: 0,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    ...sx,
+                }}
+            >
+                {single ? singleLogo : fullLogo}
+            </Box>
         </Link>
     );
-});
+}
 
-Logo.displayName = 'Logo';
+export const Logo = memo(LogoComponent);

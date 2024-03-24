@@ -1,10 +1,8 @@
-import { memo } from 'react';
 import { m } from 'framer-motion';
+import { memo } from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-
-// ----------------------------------------------------------------------
+import { useTheme } from '@mui/material/styles';
 
 const varUp = {
     animate: { y: [-12, 12, -12] },
@@ -25,8 +23,6 @@ const varRight = {
     animate: { x: [10, -10, 10] },
     transition: { duration: 7, repeat: Infinity },
 };
-
-// ----------------------------------------------------------------------
 
 function Pattern01({ sx, ...other }: BoxProps) {
     const theme = useTheme();

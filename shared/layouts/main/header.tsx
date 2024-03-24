@@ -1,27 +1,23 @@
+import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 
-import { bgBlur } from '#shared/theme/css';
-
-import NavMobile from './nav/mobile';
-import NavDesktop from './nav/desktop';
-import { HEADER } from '../config-layout';
-import { navConfig } from './config-navigation';
-import { useOffSetTop } from '#shared/hooks/use-off-set-top';
+import { Logo } from '#shared/components';
+import { HEADER } from '#shared/constants';
 import { useResponsive } from '#shared/hooks';
-import Logo from '#shared/components/logo';
-import Searchbar from '../common/searchbar';
-import SettingsButton from '../common/settings-button';
-import { PATHS } from '#app/routes';
-import HeaderShadow from '../common/header-shadow';
-
-// ----------------------------------------------------------------------
+import { useOffSetTop } from '#shared/hooks/use-off-set-top';
+import { bgBlur } from '#shared/theme/css';
+import { HeaderShadow } from '../common/header-shadow';
+import { Searchbar } from '../common/searchbar';
+import { SettingsButton } from '../common/settings-button';
+import { navConfig } from './config-navigation';
+import { NavDesktop } from './nav/desktop';
+import { NavMobile } from './nav/mobile';
 
 type Props = {
     headerOnDark: boolean;
@@ -58,7 +54,7 @@ export default function Header({ headerOnDark }: Props) {
                 </Stack>
 
                 {mdUp && (
-                    <Button variant="contained" color="inherit" href={PATHS.ROOT} target="_blank" rel="noopener">
+                    <Button variant="contained" color="inherit" href={'#'} target="_blank" rel="noopener">
                         Buy Now
                     </Button>
                 )}

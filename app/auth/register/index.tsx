@@ -17,8 +17,7 @@ import { RouterLink } from '#shared/components';
 
 import { useBoolean } from '#shared/hooks';
 
-import { Form, TextField } from '#shared/components';
-import Iconify from '#shared/components/iconify';
+import { Form, Iconify, TextField } from '#shared/components';
 
 export const RegisterPage = () => {
     const passwordShow = useBoolean();

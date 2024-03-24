@@ -1,11 +1,11 @@
-import Box, { BoxProps } from '@mui/material/Box';
 import { forwardRef } from 'react';
+import Box, { BoxProps } from '@mui/material/Box';
 
-type T_SvgColorProps = BoxProps & {
+export type T_SvgColorProps = BoxProps & {
     src: string;
 };
 
-export const SvgColor: any = forwardRef<HTMLSpanElement, T_SvgColorProps>(({ src, sx, ...other }, ref) => (
+export const SvgColor = forwardRef<HTMLSpanElement, T_SvgColorProps>(({ src, sx, ...other }, ref) => (
     <Box
         component="span"
         className="svg-color"

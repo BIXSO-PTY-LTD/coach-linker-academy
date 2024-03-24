@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { Logo, SvgColor } from '#shared/components';
 import { HEADER, NAV } from '#shared/constants';
-import { useOffSetTop, useResponsive, useSettingsContext } from '#shared/hooks';
+import { useOffSetTop, useResponsive, useSettingsContextDashboard } from '#shared/hooks';
 import { bgBlur } from '#shared/theme/css';
 import { AccountPopover } from './account-popover';
 // import ContactsPopover from '../common/contacts-popover';
@@ -22,7 +22,7 @@ type T_HeaderProps = {
 export const Header = ({ onOpenNav }: T_HeaderProps) => {
     const theme = useTheme();
 
-    const settings = useSettingsContext();
+    const settings = useSettingsContextDashboard();
 
     const isNavHorizontal = settings.themeLayout === 'horizontal';
 

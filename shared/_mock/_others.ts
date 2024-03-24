@@ -1,7 +1,5 @@
 import { _mock } from './_mock';
 
-// ----------------------------------------------------------------------
-
 export const _testimonials = [...Array(8)].map((_, index) => ({
     id: _mock.id(index),
     name: _mock.fullName(index),
@@ -11,8 +9,6 @@ export const _testimonials = [...Array(8)].map((_, index) => ({
     ratingNumber: 5,
     review: 'Amazing experience i love it a lot. Thanks to the team that dreams come true, great! I appreciate there attitude and approach.',
 }));
-
-// ----------------------------------------------------------------------
 
 export const _socials = [
     {
@@ -41,8 +37,6 @@ export const _socials = [
     },
 ];
 
-// ----------------------------------------------------------------------
-
 const BRANDS_NAME = [
     'airbnb',
     'dropbox',
@@ -69,5 +63,3 @@ export const _brandsColor = BRANDS_NAME.map((brand, index) => ({
     name: brand,
     image: `/assets/logo/${brand}_original.svg`,
 }));
-
-// ----------------------------------------------------------------------

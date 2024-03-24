@@ -4,10 +4,7 @@ import { Inter } from 'next/font/google';
 import { RootLayout } from '#shared/layouts';
 import { I_Children } from '#shared/typescript';
 
-import 'react-toastify/dist/ReactToastify.css';
 import './globals.scss';
-import { MotionLazy } from '#shared/components/animate/motion-lazy';
-import ProgressBar from '#shared/components/progress-bar/progress-bar';
 
 const inter = Inter({ subsets: ['latin'] });
 

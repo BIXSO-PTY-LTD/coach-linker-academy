@@ -1,14 +1,11 @@
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { Theme, styled, SxProps, useTheme } from '@mui/material/styles';
+import { SxProps, Theme, styled, useTheme } from '@mui/material/styles';
 
+import { IconifyProps } from '#shared/components/iconify/types';
 import { bgBlur } from '#shared/theme/css';
-
-import { IconifyProps } from '../iconify';
 import { LeftIcon, RightIcon } from './arrow-icons';
-
-// ----------------------------------------------------------------------
 
 const StyledRoot = styled(Box)(({ theme }) => ({
     ...bgBlur({
@@ -34,9 +31,7 @@ const StyledIconButton = styled(IconButton)({
     '&:hover': { opacity: 1 },
 });
 
-// ----------------------------------------------------------------------
-
-type Props = {
+type T_CarouselArrowIndexProps = {
     index: number;
     total: number;
     icon?: IconifyProps; // Right icon
@@ -45,7 +40,7 @@ type Props = {
     sx?: SxProps<Theme>;
 };
 
-export default function CarouselArrowIndex({ index, total, onNext, onPrev, icon, sx, ...other }: Props) {
+export const CarouselArrowIndex = ({ index, total, onNext, onPrev, icon, sx, ...other }: T_CarouselArrowIndexProps) => {
     const theme = useTheme();
 
     const isRTL = theme.direction === 'rtl';
@@ -65,4 +60,4 @@ export default function CarouselArrowIndex({ index, total, onNext, onPrev, icon,
             </StyledIconButton>
         </StyledRoot>
     );
-}
+};

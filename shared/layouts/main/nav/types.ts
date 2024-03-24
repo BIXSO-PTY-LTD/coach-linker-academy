@@ -1,7 +1,5 @@
-import { StackProps } from '@mui/material/Stack';
 import { ListItemButtonProps } from '@mui/material/ListItemButton';
-
-// ----------------------------------------------------------------------
+import { StackProps } from '@mui/material/Stack';
 
 export type NavItemBaseProps = {
     title: string;

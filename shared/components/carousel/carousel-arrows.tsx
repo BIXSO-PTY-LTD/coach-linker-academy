@@ -1,13 +1,11 @@
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Stack, { StackProps } from '@mui/material/Stack';
 import { alpha, styled, useTheme } from '@mui/material/styles';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
-import { IconifyProps } from '../iconify';
+import { IconifyProps } from '#shared/components/iconify/types';
 import { LeftIcon, RightIcon } from './arrow-icons';
 
-// ----------------------------------------------------------------------
-
-interface StyledIconButtonProps extends IconButtonProps {
+interface I_StyledIconButtonProps extends IconButtonProps {
     filled?: boolean;
     shape?: 'circular' | 'rounded';
     hasChild?: boolean;
@@ -15,7 +13,7 @@ interface StyledIconButtonProps extends IconButtonProps {
 
 const StyledIconButton = styled(IconButton, {
     shouldForwardProp: (prop) => prop !== 'filled' && prop !== 'hasChild' && prop !== 'shape',
-})<StyledIconButtonProps>(({ filled, shape, hasChild, theme }) => ({
+})<I_StyledIconButtonProps>(({ filled, shape, hasChild, theme }) => ({
     color: 'inherit',
     transition: theme.transitions.create('all', {
         duration: theme.transitions.duration.shorter,
@@ -45,9 +43,7 @@ const StyledIconButton = styled(IconButton, {
     }),
 }));
 
-// ----------------------------------------------------------------------
-
-interface Props extends StackProps {
+interface I_CarouselArrowsProps extends StackProps {
     shape?: 'circular' | 'rounded';
     filled?: boolean;
     children?: React.ReactNode;
@@ -58,7 +54,7 @@ interface Props extends StackProps {
     rightButtonProps?: IconButtonProps;
 }
 
-export default function CarouselArrows({
+export const CarouselArrows = ({
     shape = 'circular',
     filled = false,
     icon,
@@ -69,7 +65,7 @@ export default function CarouselArrows({
     rightButtonProps,
     sx,
     ...other
-}: Props) {
+}: I_CarouselArrowsProps) => {
     const theme = useTheme();
 
     const isRTL = theme.direction === 'rtl';
@@ -127,4 +123,4 @@ export default function CarouselArrows({
             </StyledIconButton>
         </Stack>
     );
-}
+};

@@ -1,8 +1,6 @@
 import { _mock } from './_mock';
 import { _tags } from './assets';
 
-// ----------------------------------------------------------------------
-
 const content = (name: string) => `
 <p>Pellentesque posuere. Phasellus a est. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc.</p>
 <br/>
@@ -71,8 +69,6 @@ const base = (index: number) => ({
         about: 'Integer tincidunt. Nullam dictum felis eu pede mollis pretium. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem.',
     },
 });
-
-// ----------------------------------------------------------------------
 
 export const _coursePosts = [...Array(12)].map((_, index) => ({
     ...base(index),

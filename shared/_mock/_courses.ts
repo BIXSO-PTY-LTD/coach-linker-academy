@@ -1,8 +1,6 @@
 import { _mock } from './_mock';
 import { _tags } from './assets';
 
-// ----------------------------------------------------------------------
-
 const TEACHERS = [...Array(5)].map((_, index) => ({
     id: _mock.id(index),
     role: _mock.role(index),

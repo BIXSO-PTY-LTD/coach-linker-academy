@@ -1,6 +1,3 @@
-
-// ----------------------------------------------------------------------
-
 export const navConfig = [
     { title: 'Trang chủ', path: '/' },
     { title: 'Khóa học', path: '/courses' },

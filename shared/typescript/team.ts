@@ -1,7 +1,5 @@
 import { ISocialLinks } from './socials';
 
-// ----------------------------------------------------------------------
-
 export type ITeamMemberProps = {
     id: string;
     name: string;

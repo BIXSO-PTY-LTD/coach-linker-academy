@@ -1,13 +1,12 @@
-import Iconify, { IconifyProps } from '../iconify';
+import { Iconify } from '#shared/components';
+import { IconifyProps } from '#shared/components/iconify/types';
 
-// ----------------------------------------------------------------------
-
-type Props = {
+type T_IconProps = {
     icon?: IconifyProps; // Right icon
     isRTL?: boolean;
 };
 
-export function LeftIcon({ icon = 'eva:arrow-ios-forward-fill', isRTL }: Props) {
+export function LeftIcon({ icon = 'eva:arrow-ios-forward-fill', isRTL }: T_IconProps) {
     return (
         <Iconify
             icon={icon}
@@ -21,7 +20,7 @@ export function LeftIcon({ icon = 'eva:arrow-ios-forward-fill', isRTL }: Props) 
     );
 }
 
-export function RightIcon({ icon = 'eva:arrow-ios-forward-fill', isRTL }: Props) {
+export function RightIcon({ icon = 'eva:arrow-ios-forward-fill', isRTL }: T_IconProps) {
     return (
         <Iconify
             icon={icon}

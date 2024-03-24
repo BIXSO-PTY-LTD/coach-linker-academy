@@ -3,8 +3,6 @@ import { memo } from 'react';
 import Box from '@mui/material/Box';
 import Stack, { StackProps } from '@mui/material/Stack';
 
-// ----------------------------------------------------------------------
-
 interface Props extends StackProps {
     text: string;
     icon: React.ReactElement;

@@ -1,12 +1,10 @@
-import { memo } from 'react';
 import { m } from 'framer-motion';
+import { memo } from 'react';
 
 import Box, { BoxProps } from '@mui/material/Box';
 
-import Dot from './dots';
 import Circle from './circle';
-
-// ----------------------------------------------------------------------
+import Dot from './dots';
 
 const animateDown = (duration = 60) => ({
     animate: { rotate: [360, 0] },

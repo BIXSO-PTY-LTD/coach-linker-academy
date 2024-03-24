@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* toast */
+@import 'react-toastify/dist/ReactToastify.css';
+
 /* scrollbar */
 @import 'simplebar-react/dist/simplebar.min.css';
 
