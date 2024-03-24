@@ -1,9 +1,20 @@
 'use client';
 export { useTranslations } from 'next-intl';
 
-export * from './useBoolean';
-export * from './useClickOutside';
-export * from './useLanguage';
-export * from './useLoading';
-export * from './useLocalStorage';
-export * from './useResponsive';
+export * from './use-active-link';
+export * from './use-auth-context';
+export * from './use-boolean';
+export * from './use-click-outside';
+export * from './use-language';
+export * from './use-loading';
+export * from './use-local-storage';
+export * from './use-mocked-user';
+export * from './use-nav';
+export * from './use-offset-top';
+export * from './use-path-name';
+export * from './use-popover';
+export * from './use-responsive';
+export * from './use-router';
+export * from './use-settings-context';
+export * from './use-snackbar';
+export * from './use-width';

@@ -8,5 +8,15 @@
         "title": "Không tìm thấy trang",
         "message": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị xóa. Vui lòng kiểm tra lại đường dẫn hoặc quay về trang chủ.",
         "btnBack": "Quay về trang chủ"
+    },
+    "management": {
+        "title": "Quản lý",
+        "coach": {
+            "statistic": "Thống kê",
+            "scheduler": "Lịch",
+            "students": "Học Viên",
+            "courses": "Khoá Học",
+            "settings": "Cài Đặt"
+        }
     }
 }

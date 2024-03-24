@@ -1,31 +1,34 @@
 import { createContext, useEffect, useState } from 'react';
 
 import { useLocalStorage } from '#shared/hooks';
-import { E_LanguageCode, I_Children, I_LanguageContextType } from '#shared/typescript';
+import { LANGUAGE_LIST } from '#shared/i18n';
+import { I_Children, I_Language, I_LanguageContextType } from '#shared/typescript';
 
 export const LanguageContext = createContext<I_LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: I_Children) => {
-    const localLang = useLocalStorage<E_LanguageCode>('lang');
-    const [selectedLanguage, setSelectedLanguage] = useState<E_LanguageCode>(E_LanguageCode.en);
+    const localLang = useLocalStorage<I_Language>('lang');
+    const [currentLang, setCurrentLang] = useState<I_Language>(LANGUAGE_LIST[0]);
 
-    const handleSetSelectedLanguage = (code: E_LanguageCode) => {
-        setSelectedLanguage(code);
-        localLang.set(code);
+    const handleSetSelectedLanguage = (newLang: I_Language) => {
+        setCurrentLang(newLang);
+        localLang.set(newLang);
     };
 
     useEffect(() => {
         if (localLang.value === null) {
-            setSelectedLanguage(E_LanguageCode.en);
+            setCurrentLang(LANGUAGE_LIST[0]);
         } else {
             if (localLang.value) {
-                setSelectedLanguage(localLang.value);
+                setCurrentLang(localLang.value);
             }
         }
     }, [localLang.value]);
 
     return (
-        <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage: handleSetSelectedLanguage }}>
+        <LanguageContext.Provider
+            value={{ allLangs: LANGUAGE_LIST, currentLang, setCurrentLang: handleSetSelectedLanguage }}
+        >
             {children}
         </LanguageContext.Provider>
     );

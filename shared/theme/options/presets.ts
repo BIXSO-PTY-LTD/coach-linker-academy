@@ -1,6 +1,6 @@
 import { alpha } from '@mui/material/styles';
 
-import { grey, primary, secondary } from '#shared/theme/palette';
+import { grey, primary, secondary } from '../palette';
 
 type T_PresetType = 'default' | 'preset01' | 'preset02' | 'preset03' | 'preset04' | 'preset05';
 

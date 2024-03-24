@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { LanguageProvider, LoadingProvider, SettingsProvider } from '#shared/contexts';
-import { BlankLayout } from '#shared/layouts';
-import ThemeProvider from '#shared/theme';
+import { RootLayout } from '#shared/layouts';
 import { I_Children } from '#shared/typescript';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,25 +17,11 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({ children }: Readonly<I_Children>) {
+export default function AppLayout({ children }: I_Children) {
     return (
         <html lang="en">
             <body className={inter.className}>
-                <SettingsProvider
-                    defaultSettings={{
-                        themeMode: 'light',
-                        themeDirection: 'ltr',
-                        themeColorPresets: 'default',
-                    }}
-                >
-                    <ThemeProvider>
-                        <LanguageProvider>
-                            <LoadingProvider>
-                                <BlankLayout>{children}</BlankLayout>
-                            </LoadingProvider>
-                        </LanguageProvider>
-                    </ThemeProvider>
-                </SettingsProvider>
+                <RootLayout>{children}</RootLayout>
             </body>
         </html>
     );

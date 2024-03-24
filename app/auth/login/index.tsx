@@ -15,9 +15,11 @@ import Typography from '@mui/material/Typography';
 import { PATHS } from '#app/routes';
 import { Form, Iconify, RouterLink, TextField } from '#shared/components';
 import { useBoolean } from '#shared/hooks';
+import { useRouter } from 'next/navigation';
 
 export const LoginPage = () => {
     const passwordShow = useBoolean();
+    const router = useRouter();
 
     const LoginSchema = Yup.object().shape({
         email: Yup.string().required('Email is required').email('That is not an email'),
@@ -45,7 +47,8 @@ export const LoginPage = () => {
     const onSubmit = handleSubmit(async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 500));
-            reset();
+            // reset();
+            router.push(PATHS.DASHBOARD.ROOT);
             console.log('DATA', data);
         } catch (error) {
             console.error(error);

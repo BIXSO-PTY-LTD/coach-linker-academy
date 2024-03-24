@@ -1,3 +1,7 @@
+import { Locale as DateFnsLocale } from 'date-fns';
+
+import { LANGUAGE_LIST } from '#shared/i18n';
+
 export enum E_LanguageCode {
     en = 'en',
     vi = 'vi',
@@ -9,11 +13,20 @@ export enum E_LanguageTimezone {
 }
 
 export interface I_Language {
-    code: E_LanguageCode;
+    label: string;
+    value: E_LanguageCode;
     flag: string;
+    systemValue: any;
+    adapterLocale: DateFnsLocale;
+    icon: string;
+    numberFormat: {
+        code: string;
+        currency: string;
+    };
 }
 
 export interface I_LanguageContextType {
-    selectedLanguage: E_LanguageCode;
-    setSelectedLanguage: (code: E_LanguageCode) => void;
+    allLangs: typeof LANGUAGE_LIST;
+    currentLang: I_Language;
+    setCurrentLang: (newLang: I_Language) => void;
 }

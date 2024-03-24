@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider as MuiThemeProvider, ThemeOptions, createTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 
-import { useSettingsContext } from '#shared/contexts';
+import { useSettingsContext } from '#shared/hooks';
 import { I_Children } from '#shared/typescript';
 import { customShadows } from './custom-shadows';
 import NextAppDirEmotionCacheProvider from './next-emotion-cache';
@@ -14,9 +14,8 @@ import { palette } from './palette';
 import { shadows } from './shadows';
 import { typography } from './typography';
 
-export default function ThemeProvider({ children }: I_Children) {
+export const ThemeProvider = ({ children }: I_Children) => {
     const settings = useSettingsContext();
-
     const presets = createPresets(settings.themeColorPresets);
 
     const memoizedValue = useMemo(
@@ -51,4 +50,4 @@ export default function ThemeProvider({ children }: I_Children) {
             </MuiThemeProvider>
         </NextAppDirEmotionCacheProvider>
     );
-}
+};

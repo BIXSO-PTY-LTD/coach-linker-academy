@@ -2,22 +2,23 @@ import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui
 import { useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import { Bubble, Spinner } from '#shared/components';
+import { Bubble, Loading } from '#shared/components';
+import { LanguageProvider, LoadingProvider } from '#shared/contexts';
 import { withI18n } from '#shared/hocs';
 import { useClickOutside, useLanguage, useLoading, useTranslations } from '#shared/hooks';
 import { LANGUAGE_LIST } from '#shared/i18n';
-import { E_LanguageCode, I_Children } from '#shared/typescript';
+import { I_Children, I_Language } from '#shared/typescript';
 
 export const LayoutWrapper = withI18n(({ children }: I_Children) => {
     const { isLoading } = useLoading();
     const translate = useTranslations();
-    const { selectedLanguage, setSelectedLanguage } = useLanguage();
+    const { currentLang, setCurrentLang } = useLanguage();
     const languageBubbleRef = useRef(null);
 
     const [bubbleOpen, setBubbleOpen] = useState(false);
 
-    const handleChangeLanguage = (code: E_LanguageCode) => {
-        setSelectedLanguage(code);
+    const handleChangeLanguage = (newLang: I_Language) => {
+        setCurrentLang(newLang);
         setBubbleOpen(false);
     };
 
@@ -25,19 +26,15 @@ export const LayoutWrapper = withI18n(({ children }: I_Children) => {
 
     return (
         <>
-            {isLoading && <Spinner full />}
+            {isLoading && <Loading full />}
             {children}
-            <Bubble
-                icon={LANGUAGE_LIST[selectedLanguage].flag}
-                open={bubbleOpen}
-                toggleOpen={() => setBubbleOpen(!bubbleOpen)}
-            >
+            <Bubble icon={currentLang.flag} open={bubbleOpen} toggleOpen={() => setBubbleOpen(!bubbleOpen)}>
                 <List ref={languageBubbleRef}>
-                    {Object.values(LANGUAGE_LIST).map((lang, idx) => (
+                    {LANGUAGE_LIST.map((lang, idx) => (
                         <ListItem key={idx} disablePadding>
-                            <ListItemButton onClick={() => handleChangeLanguage(lang.code)}>
+                            <ListItemButton onClick={() => handleChangeLanguage(lang)}>
                                 <ListItemIcon className="text-black">{lang.flag}</ListItemIcon>
-                                <ListItemText primary={translate(`language.${lang.code}`)} />
+                                <ListItemText primary={translate(`language.${lang.value}`)} />
                             </ListItemButton>
                         </ListItem>
                     ))}
@@ -47,3 +44,11 @@ export const LayoutWrapper = withI18n(({ children }: I_Children) => {
         </>
     );
 });
+
+export const RootLayout = ({ children }: I_Children) => (
+    <LanguageProvider>
+        <LoadingProvider>
+            <LayoutWrapper>{children}</LayoutWrapper>
+        </LoadingProvider>
+    </LanguageProvider>
+);

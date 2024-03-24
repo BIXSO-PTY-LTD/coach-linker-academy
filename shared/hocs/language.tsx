@@ -7,15 +7,15 @@ import { E_LanguageTimezone, I_Children } from '#shared/typescript';
 
 export const withI18n = (Component: FC<I_Children>) => {
     const PageWithI18n = (props: I_Children) => {
-        const { selectedLanguage } = useLanguage();
+        const { currentLang } = useLanguage();
 
-        const messages = MESSAGES[selectedLanguage];
+        const messages = MESSAGES[currentLang.value];
 
         return (
             <NextIntlClientProvider
-                locale={selectedLanguage}
+                locale={currentLang.value}
                 messages={messages}
-                timeZone={E_LanguageTimezone[selectedLanguage]}
+                timeZone={E_LanguageTimezone[currentLang.value]}
             >
                 <Component {...props} />
             </NextIntlClientProvider>
