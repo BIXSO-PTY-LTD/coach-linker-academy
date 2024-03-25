@@ -25,6 +25,7 @@ export const MainLayout = ({ children }: I_Children) => {
                 themeMode: 'light',
                 themeDirection: 'ltr',
                 themeColorPresets: 'default',
+                themeLayout: 'vertical',
             }}
         >
             <ThemeProvider>
@@ -37,7 +38,6 @@ export const MainLayout = ({ children }: I_Children) => {
                             component="main"
                             sx={{
                                 flexGrow: 1,
-                                pt: 10,
                             }}
                         >
                             {!actionPage(spacingLayout) && (

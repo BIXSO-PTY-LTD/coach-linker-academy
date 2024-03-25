@@ -18,6 +18,7 @@ export const AuthIllustrationLayout = ({ children }: I_Children) => {
                 themeMode: 'light',
                 themeDirection: 'ltr',
                 themeColorPresets: 'default',
+                themeLayout: 'vertical',
             }}
         >
             <ThemeProvider>

@@ -2,12 +2,15 @@ import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui
 import { useRef, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import { Bubble, Loading } from '#shared/components';
-import { LanguageProvider, LoadingProvider } from '#shared/contexts';
+import { Bubble, Loading, ProgressBar } from '#shared/components';
+import { LanguageProvider, LoadingProvider, SettingsProvider } from '#shared/contexts';
 import { withI18n } from '#shared/hocs';
 import { useClickOutside, useLanguage, useLoading, useTranslations } from '#shared/hooks';
 import { LANGUAGE_LIST } from '#shared/i18n';
 import { I_Children, I_Language } from '#shared/typescript';
+import { ThemeProvider } from '#shared/theme';
+import { MotionLazy } from '#shared/components/animate/motion-lazy';
+import { MainLayout } from '.';
 
 export const LayoutWrapper = withI18n(({ children }: I_Children) => {
     const { isLoading } = useLoading();
@@ -46,9 +49,25 @@ export const LayoutWrapper = withI18n(({ children }: I_Children) => {
 });
 
 export const RootLayout = ({ children }: I_Children) => (
-    <LanguageProvider>
-        <LoadingProvider>
-            <LayoutWrapper>{children}</LayoutWrapper>
-        </LoadingProvider>
-    </LanguageProvider>
+    <SettingsProvider
+        defaultSettings={{
+            themeMode: 'light',
+            themeDirection: 'ltr',
+            themeColorPresets: 'default',
+            themeLayout: 'vertical',
+        }}
+    >
+        <ThemeProvider>
+            <MotionLazy>
+                <LanguageProvider>
+                    <LoadingProvider>
+                        <ProgressBar />
+                        <LayoutWrapper>
+                            <MainLayout>{children}</MainLayout>
+                        </LayoutWrapper>
+                    </LoadingProvider>
+                </LanguageProvider>
+            </MotionLazy>
+        </ThemeProvider>
+    </SettingsProvider>
 );

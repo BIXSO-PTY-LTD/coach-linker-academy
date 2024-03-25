@@ -13,6 +13,10 @@ export const PATHS = {
         REGISTER: `${ROOTS.AUTH}/register`,
         FORGOT_PASSWORD: `${ROOTS.AUTH}/forgot-password`,
     },
+    COURSE: {
+        ROOT: '/courses',
+        DETAILS: (id: string) => `/courses/${id}`,
+    },
     MANAGEMENT: {
         COACH: {
             PROFILE: `${ROOTS.MANAGEMENT.COACH}/profile`,

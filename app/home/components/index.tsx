@@ -8,15 +8,15 @@ import HomeLatestPosts from '#app/home/components/home-latest-posts';
 import HomeNewsletter from '#app/home/components/home-newsletter';
 import HomeTeam from '#app/home/components/home-team';
 import HomeTestimonial from '#app/home/components/home-testimonial';
-import { _coursePosts, _courses, _coursesByCategories, _members, _testimonials } from '#shared/_mock';
-import { MainLayout } from '#shared/layouts';
+import { _brandsColor, _coursePosts, _courses, _coursesByCategories, _members, _testimonials } from '#shared/_mock';
+import HomeOurClients from './home-our-clients';
 
 export const HomePage = () => {
     return (
-        <MainLayout>
+        <>
             <HomeHero />
 
-            {/* <HomeOurClients brands={_brandsColor} /> */}
+            <HomeOurClients brands={_brandsColor} />
 
             <HomeIntroduce />
 
@@ -33,6 +33,6 @@ export const HomePage = () => {
             <HomeDownloadApp />
 
             <HomeNewsletter />
-        </MainLayout>
+        </>
     );
 };
