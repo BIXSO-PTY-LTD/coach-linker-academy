@@ -1,5 +1,5 @@
 export const navConfig = [
-    { title: 'Trang chủ', path: '/' },
+    { title: 'Trang chủ', path: '/home' },
     { title: 'Khóa học', path: '/courses' },
     { title: 'Coach', path: '/coach' },
 ];

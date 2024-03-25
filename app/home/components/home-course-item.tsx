@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { Iconify, Image, Label, RouterLink, TextMaxLine } from '#shared/components';
 import { ICourseProps } from '#shared/typescript/course';
 import { fCurrency, fShortenNumber } from '#shared/utils/format-number';
+import { PATHS } from '#app/routes';
 
 type T_HomeCourseItemProps = {
     course: ICourseProps;
@@ -17,6 +18,7 @@ type T_HomeCourseItemProps = {
 
 export default function HomeCourseItem({ course, vertical }: T_HomeCourseItemProps) {
     const {
+        id,
         slug,
         level,
         price,
@@ -104,7 +106,7 @@ export default function HomeCourseItem({ course, vertical }: T_HomeCourseItemPro
                     </Stack>
 
                     <Stack spacing={1}>
-                        <Link component={RouterLink} href={'#'} color="inherit">
+                        <Link component={RouterLink} href={PATHS.COURSE.DETAILS(id)} color="inherit">
                             <TextMaxLine variant="h6" line={1}>
                                 {slug}
                             </TextMaxLine>
